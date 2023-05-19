@@ -5,15 +5,15 @@
         [
             {
                 "photo": "https://images.unsplash.com/photo-1516055000302-a11419b8179f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjR8fHRveSUyMGNhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
-                "name": "akil",
-                "price": "20",
-                "rating": "2"
+                "name": "Ford Mustang GT Fastback",
+                "price": "22",
+                "rating": "5"
             },
             {
                 "photo": "https://images.unsplash.com/photo-1594787317357-dcda50fd1d78?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fHRveSUyMGNhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
-                "name": "akil",
+                "name": "Volkswagen Beetle",
                 "price": "20",
-                "rating": "2"
+                "rating": "4"
             }
         ]
     },
@@ -23,14 +23,14 @@
         [
             {
                 "photo": "https://images.unsplash.com/photo-1584641911111-4fee26b4cc8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fHRveSUyMGNhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
-                "name": "akil",
-                "price": "20",
-                "rating": "2"
+                "name": "New York Yellow Cab",
+                "price": "10",
+                "rating": "3"
             },
             {
                 "photo": "https://images.unsplash.com/photo-1536846511313-4b07b637bff9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHRveSUyMGNhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
-                "name": "akil",
-                "price": "20",
+                "name": "London Yellow Cab",
+                "price": "13",
                 "rating": "2"
             }
         ]
@@ -41,15 +41,15 @@
         [
             {
                 "photo": "https://images.unsplash.com/photo-1558563763-9157dc01afbc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDh8fHRveSUyMGNhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
-                "name": "akil",
-                "price": "20",
-                "rating": "2"
+                "name": "Pazero 488 GTB",
+                "price": "32",
+                "rating": "4"
             },
             {
                 "photo": "https://images.unsplash.com/photo-1606587490124-22ce51c29c21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTd8fHRveSUyMGNhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
-                "name": "akil",
-                "price": "20",
-                "rating": "2"
+                "name": "McLaren P1 GTR",
+                "price": "21",
+                "rating": "5"
             }
         ]
     }
