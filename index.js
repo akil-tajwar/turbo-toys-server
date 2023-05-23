@@ -27,10 +27,27 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
     const toyCollection = client.db('toyDB').collection('newtoy');
-    app.post('/newtoy', async(req, res) => {
+
+    app.get('/newtoy', async (req, res) => {
+      const cursor = toyCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    })
+
+    app.post('/newtoy', async (req, res) => {
       const newToy = req.body;
       console.log(newToy);
       const result = await toyCollection.insertOne(newToy);
+      res.send(result);
+    })
+
+    app.get('/mytoys', async (req, res) => {
+      console.log(req.query.email);
+      let query = {};
+      if (req.query?.email) {
+        query = { email: req.query.email }
+      }
+      const result = await toyCollection.find(query).toArray();
       res.send(result);
     })
 
@@ -46,15 +63,15 @@ run().catch(console.dir);
 
 
 app.get('/', (req, res) => {
-    res.send('toy car is running');
+  res.send('toy car is running');
 })
 
 app.get('/toy', (req, res) => {
-    res.send(toy);
+  res.send(toy);
 })
 app.get('/category', (req, res) => {
-    res.send(category);
+  res.send(category);
 })
 app.listen(port, () => {
-    console.log(`toy car is running on prot: ${port}`);
+  console.log(`toy car is running on prot: ${port}`);
 })
