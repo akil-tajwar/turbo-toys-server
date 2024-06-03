@@ -1,5 +1,5 @@
-const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const express = require('express');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const cors = require('cors');
 require('dotenv').config();
 const app = express();
@@ -8,6 +8,12 @@ const toy = require('./data/toy.json')
 const category = require('./data/category.json')
 
 app.use(cors());
+const corsConfig = {
+  origin: '*',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE']
+}
+// app.use(cors(corsConfig))
 app.use(express.json());
 
 
@@ -24,8 +30,17 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
+    app.get('/toy', (req, res) => {
+      res.send(toy);
+    })
+    app.get('/category', (req, res) => {
+      res.send(category);
+    })
+    app.listen(port, () => {
+      console.log(`toy car is running on prot: ${port}`);
+    })
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
     const toyCollection = client.db('toyDB').collection('newtoy');
 
     app.get('/newtoy', async (req, res) => {
@@ -51,10 +66,10 @@ async function run() {
       res.send(result);
     })
 
-    app.put('/mytoys/:id', async(req, res) => {
+    app.put('/mytoys/:id', async (req, res) => {
       const id = req.params.id;
-      const filter = {_id: new ObjectId(id)};
-      const options = {upsert: true};
+      const filter = { _id: new ObjectId(id) };
+      const options = { upsert: true };
       const updatedCoffee = req.body;
       const toy = {
         $set: {
@@ -72,15 +87,39 @@ async function run() {
       res.send(result);
     })
 
-    app.delete('/mytoys/:id', async(req, res) => {
+    app.delete('/mytoys/:id', async (req, res) => {
       const id = req.params.id;
-      const querry = {_id: new ObjectId(id)};
+      const querry = { _id: new ObjectId(id) };
       const result = await toyCollection.deleteOne(querry);
       res.send(result);
     })
 
+    app.patch("/cart/addtocart/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const updatedDoc = {
+        $set: {
+          addToCart: true,
+        },
+      };
+      const result = await toyCollection.updateOne(filter, updatedDoc);
+      res.send(result);
+    });
+
+    app.patch("/cart/undofromcart/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const updatedDoc = {
+        $set: {
+          addToCart: false,
+        },
+      };
+      const result = await toyCollection.updateOne(filter, updatedDoc);
+      res.send(result);
+    });
+
     // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
+    // await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
@@ -94,12 +133,3 @@ app.get('/', (req, res) => {
   res.send('toy car is running');
 })
 
-app.get('/toy', (req, res) => {
-  res.send(toy);
-})
-app.get('/category', (req, res) => {
-  res.send(category);
-})
-app.listen(port, () => {
-  console.log(`toy car is running on prot: ${port}`);
-})
